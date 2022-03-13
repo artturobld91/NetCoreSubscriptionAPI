@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SubscriptionCoreAPI.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebAPIAutores.Entidades;
+using SubscriptionCoreAPI.Entidades;
 
-namespace WebAPIAutores
+namespace SubscriptionCoreAPI
 {
     public class ApplicationDbContext : IdentityDbContext
     {
@@ -27,5 +28,6 @@ namespace WebAPIAutores
         public DbSet<Libro> Libros { get; set; }
         public DbSet<Comentario> Comentarios { get; set; }
         public DbSet<AutorLibro> AutoresLibros { get; set; }
+        public DbSet<APIKey> APIKeys { get; set; }
     }
 }

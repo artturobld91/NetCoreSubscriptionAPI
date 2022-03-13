@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
-using WebAPIAutores.Validaciones;
+using SubscriptionCoreAPI.Validaciones;
 
-namespace WebAPIAutores.Entidades
+namespace SubscriptionCoreAPI.Entidades
 {
     public class Autor
     {

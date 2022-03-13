@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace WebAPIAutores.Migrations
+namespace SubscriptionCoreAPI.Migrations
 {
     public partial class FechaPublicacionLibro : Migration
     {

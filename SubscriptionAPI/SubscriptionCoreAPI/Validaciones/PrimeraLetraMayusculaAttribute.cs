@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebAPIAutores.Validaciones
+namespace SubscriptionCoreAPI.Validaciones
 {
     public class PrimeraLetraMayusculaAttribute: ValidationAttribute
     {

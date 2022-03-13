@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Logging;
-using WebAPIAutores;
+using SubscriptionCoreAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 

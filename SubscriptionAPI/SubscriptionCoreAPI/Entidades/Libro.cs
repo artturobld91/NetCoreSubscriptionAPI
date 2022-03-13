@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using WebAPIAutores.Validaciones;
+using SubscriptionCoreAPI.Validaciones;
 
-namespace WebAPIAutores.Entidades
+namespace SubscriptionCoreAPI.Entidades
 {
     public class Libro
     {

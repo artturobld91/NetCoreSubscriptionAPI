@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebAPIAutores.Entidades
+namespace SubscriptionCoreAPI.Entidades
 {
     public class Comentario
     {

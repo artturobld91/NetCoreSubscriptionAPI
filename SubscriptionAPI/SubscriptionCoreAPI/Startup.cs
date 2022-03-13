@@ -15,11 +15,11 @@ using System.IdentityModel.Tokens.Jwt;
 using System.IO;
 using System.Text;
 using System.Text.Json.Serialization;
-using WebAPIAutores.Filtros;
-using WebAPIAutores.Middlewares;
-using WebAPIAutores.Servicios;
+using SubscriptionCoreAPI.Filtros;
+using SubscriptionCoreAPI.Middlewares;
+using SubscriptionCoreAPI.Servicios;
 
-namespace WebAPIAutores
+namespace SubscriptionCoreAPI
 {
     public class Startup
     {
@@ -56,7 +56,7 @@ namespace WebAPIAutores
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPIAutores", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "SubscriptionCoreAPI", Version = "v1" });
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
@@ -102,9 +102,11 @@ namespace WebAPIAutores
             {
                 opciones.AddDefaultPolicy(builder =>
                 {
-                    builder.WithOrigins("https://www.apirequest.io").AllowAnyMethod().AllowAnyHeader();
+                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
                 });
             });
+
+            services.AddScoped<KeysService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -119,7 +121,7 @@ namespace WebAPIAutores
             }
 
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPIAutores v1"));
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SubscriptionCoreAPI v1"));
 
             app.UseHttpsRedirection();
 

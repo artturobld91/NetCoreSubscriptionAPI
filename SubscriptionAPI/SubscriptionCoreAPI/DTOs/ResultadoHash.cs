@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebAPIAutores.DTOs
+namespace SubscriptionCoreAPI.DTOs
 {
     public class ResultadoHash
     {

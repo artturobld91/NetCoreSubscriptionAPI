@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebAPIAutores.DTOs;
-using WebAPIAutores.Entidades;
+using SubscriptionCoreAPI.DTOs;
+using SubscriptionCoreAPI.Entidades;
 
-namespace WebAPIAutores.Utilidades
+namespace SubscriptionCoreAPI.Utilidades
 {
     public class AutoMapperProfiles: Profile
     {
@@ -26,6 +26,8 @@ namespace WebAPIAutores.Utilidades
 
             CreateMap<ComentarioCreacionDTO, Comentario>();
             CreateMap<Comentario, ComentarioDTO>();
+
+            CreateMap<APIKey, KeyDTO>();
         }
 
         private List<LibroDTO> MapAutorDTOLibros(Autor autor, AutorDTO autorDTO)

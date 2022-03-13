@@ -4,9 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebAPIAutores;
+using SubscriptionCoreAPI;
 
-namespace WebAPIAutores.Migrations
+#nullable disable
+
+namespace SubscriptionCoreAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -15,9 +17,10 @@ namespace WebAPIAutores.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "6.0.0-preview.4.21253.1")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "6.0.3")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -43,15 +46,16 @@ namespace WebAPIAutores.Migrations
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("AspNetRoles");
+                    b.ToTable("AspNetRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -67,7 +71,7 @@ namespace WebAPIAutores.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims");
+                    b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
@@ -132,15 +136,16 @@ namespace WebAPIAutores.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers");
+                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -156,7 +161,7 @@ namespace WebAPIAutores.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims");
+                    b.ToTable("AspNetUserClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -178,7 +183,7 @@ namespace WebAPIAutores.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins");
+                    b.ToTable("AspNetUserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -193,7 +198,7 @@ namespace WebAPIAutores.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles");
+                    b.ToTable("AspNetUserRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -212,15 +217,43 @@ namespace WebAPIAutores.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens");
+                    b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("WebAPIAutores.Entidades.Autor", b =>
+            modelBuilder.Entity("SubscriptionCoreAPI.Entidades.APIKey", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Key")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("KeyType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UsuarioId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("APIKeys");
+                });
+
+            modelBuilder.Entity("SubscriptionCoreAPI.Entidades.Autor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -232,7 +265,7 @@ namespace WebAPIAutores.Migrations
                     b.ToTable("Autores");
                 });
 
-            modelBuilder.Entity("WebAPIAutores.Entidades.AutorLibro", b =>
+            modelBuilder.Entity("SubscriptionCoreAPI.Entidades.AutorLibro", b =>
                 {
                     b.Property<int>("AutorId")
                         .HasColumnType("int");
@@ -250,12 +283,13 @@ namespace WebAPIAutores.Migrations
                     b.ToTable("AutoresLibros");
                 });
 
-            modelBuilder.Entity("WebAPIAutores.Entidades.Comentario", b =>
+            modelBuilder.Entity("SubscriptionCoreAPI.Entidades.Comentario", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Contenido")
                         .HasColumnType("nvarchar(max)");
@@ -275,12 +309,13 @@ namespace WebAPIAutores.Migrations
                     b.ToTable("Comentarios");
                 });
 
-            modelBuilder.Entity("WebAPIAutores.Entidades.Libro", b =>
+            modelBuilder.Entity("SubscriptionCoreAPI.Entidades.Libro", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("FechaPublicacion")
                         .HasColumnType("datetime2");
@@ -346,15 +381,24 @@ namespace WebAPIAutores.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WebAPIAutores.Entidades.AutorLibro", b =>
+            modelBuilder.Entity("SubscriptionCoreAPI.Entidades.APIKey", b =>
                 {
-                    b.HasOne("WebAPIAutores.Entidades.Autor", "Autor")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId");
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("SubscriptionCoreAPI.Entidades.AutorLibro", b =>
+                {
+                    b.HasOne("SubscriptionCoreAPI.Entidades.Autor", "Autor")
                         .WithMany("AutoresLibros")
                         .HasForeignKey("AutorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebAPIAutores.Entidades.Libro", "Libro")
+                    b.HasOne("SubscriptionCoreAPI.Entidades.Libro", "Libro")
                         .WithMany("AutoresLibros")
                         .HasForeignKey("LibroId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -365,9 +409,9 @@ namespace WebAPIAutores.Migrations
                     b.Navigation("Libro");
                 });
 
-            modelBuilder.Entity("WebAPIAutores.Entidades.Comentario", b =>
+            modelBuilder.Entity("SubscriptionCoreAPI.Entidades.Comentario", b =>
                 {
-                    b.HasOne("WebAPIAutores.Entidades.Libro", "Libro")
+                    b.HasOne("SubscriptionCoreAPI.Entidades.Libro", "Libro")
                         .WithMany("Comentarios")
                         .HasForeignKey("LibroId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -382,12 +426,12 @@ namespace WebAPIAutores.Migrations
                     b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("WebAPIAutores.Entidades.Autor", b =>
+            modelBuilder.Entity("SubscriptionCoreAPI.Entidades.Autor", b =>
                 {
                     b.Navigation("AutoresLibros");
                 });
 
-            modelBuilder.Entity("WebAPIAutores.Entidades.Libro", b =>
+            modelBuilder.Entity("SubscriptionCoreAPI.Entidades.Libro", b =>
                 {
                     b.Navigation("AutoresLibros");
 

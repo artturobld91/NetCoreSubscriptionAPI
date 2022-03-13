@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebAPIAutores;
+using SubscriptionCoreAPI;
 
-namespace WebAPIAutores.Migrations
+namespace SubscriptionCoreAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20210604225138_Comentarios")]
@@ -20,7 +20,7 @@ namespace WebAPIAutores.Migrations
                 .HasAnnotation("ProductVersion", "6.0.0-preview.3.21201.2")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("WebAPIAutores.Entidades.Autor", b =>
+            modelBuilder.Entity("SubscriptionCoreAPI.Entidades.Autor", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -37,7 +37,7 @@ namespace WebAPIAutores.Migrations
                     b.ToTable("Autores");
                 });
 
-            modelBuilder.Entity("WebAPIAutores.Entidades.Comentario", b =>
+            modelBuilder.Entity("SubscriptionCoreAPI.Entidades.Comentario", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -57,7 +57,7 @@ namespace WebAPIAutores.Migrations
                     b.ToTable("Comentarios");
                 });
 
-            modelBuilder.Entity("WebAPIAutores.Entidades.Libro", b =>
+            modelBuilder.Entity("SubscriptionCoreAPI.Entidades.Libro", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -74,9 +74,9 @@ namespace WebAPIAutores.Migrations
                     b.ToTable("Libros");
                 });
 
-            modelBuilder.Entity("WebAPIAutores.Entidades.Comentario", b =>
+            modelBuilder.Entity("SubscriptionCoreAPI.Entidades.Comentario", b =>
                 {
-                    b.HasOne("WebAPIAutores.Entidades.Libro", "Libro")
+                    b.HasOne("SubscriptionCoreAPI.Entidades.Libro", "Libro")
                         .WithMany("Comentarios")
                         .HasForeignKey("LibroId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -85,7 +85,7 @@ namespace WebAPIAutores.Migrations
                     b.Navigation("Libro");
                 });
 
-            modelBuilder.Entity("WebAPIAutores.Entidades.Libro", b =>
+            modelBuilder.Entity("SubscriptionCoreAPI.Entidades.Libro", b =>
                 {
                     b.Navigation("Comentarios");
                 });

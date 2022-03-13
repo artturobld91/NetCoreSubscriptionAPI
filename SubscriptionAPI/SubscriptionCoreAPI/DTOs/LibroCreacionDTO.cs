@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using WebAPIAutores.Validaciones;
+using SubscriptionCoreAPI.Validaciones;
 
-namespace WebAPIAutores.DTOs
+namespace SubscriptionCoreAPI.DTOs
 {
     public class LibroCreacionDTO
     {

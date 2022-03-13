@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebAPIAutores.Middlewares
+namespace SubscriptionCoreAPI.Middlewares
 {
 
     public static class LoguearRespuestaHTTPMiddlewareExtensions

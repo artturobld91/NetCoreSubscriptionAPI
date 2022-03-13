@@ -8,10 +8,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebAPIAutores.DTOs;
-using WebAPIAutores.Entidades;
+using SubscriptionCoreAPI.DTOs;
+using SubscriptionCoreAPI.Entidades;
 
-namespace WebAPIAutores.Controllers
+namespace SubscriptionCoreAPI.Controllers
 {
     [ApiController]
     [Route("api/libros/{libroId:int}/comentarios")]

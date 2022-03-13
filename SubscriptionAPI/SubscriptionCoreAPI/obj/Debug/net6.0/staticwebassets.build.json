@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "8yIJRN542wgbqBnpHWeEc1y1QIj2Ome46u6OX+Metkk=",
+  "Source": "SubscriptionCoreAPI",
+  "BasePath": "_content/SubscriptionCoreAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "SubscriptionCoreAPI\\wwwroot",
+      "Source": "SubscriptionCoreAPI",
+      "ContentRoot": "C:\\Users\\Oscar.Cruz\\source\\repos\\SubscriptionAPI\\SubscriptionAPI\\SubscriptionCoreAPI\\wwwroot\\",
+      "BasePath": "_content/SubscriptionCoreAPI",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Oscar.Cruz\\source\\repos\\SubscriptionAPI\\SubscriptionAPI\\SubscriptionCoreAPI\\wwwroot\\Archivo 1.txt",
+      "SourceId": "SubscriptionCoreAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Oscar.Cruz\\source\\repos\\SubscriptionAPI\\SubscriptionAPI\\SubscriptionCoreAPI\\wwwroot\\",
+      "BasePath": "_content/SubscriptionCoreAPI",
+      "RelativePath": "Archivo 1.txt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Archivo 1.txt"
+    }
+  ]
+}
