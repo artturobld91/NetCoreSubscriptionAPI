@@ -129,6 +129,8 @@ namespace SubscriptionCoreAPI
 
             app.UseCors();
 
+            app.UseLimitRequests();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

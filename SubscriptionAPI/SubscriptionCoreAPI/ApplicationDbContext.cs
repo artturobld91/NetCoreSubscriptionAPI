@@ -29,5 +29,6 @@ namespace SubscriptionCoreAPI
         public DbSet<Comentario> Comentarios { get; set; }
         public DbSet<AutorLibro> AutoresLibros { get; set; }
         public DbSet<APIKey> APIKeys { get; set; }
+        public DbSet<Request> Requests { get; set; }
     }
 }
