@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using System.Linq;
+using SubscriptionCoreAPI.DTOs;
 
 namespace SubscriptionCoreAPI.Controllers
 {
@@ -13,9 +16,14 @@ namespace SubscriptionCoreAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post()
-        { 
-        
+        public async Task<ActionResult> Post(CreateDomainRestrictionsDTO createDomainRestrictionDTO)
+        {
+            var keyDB = await context.APIKeys.FirstOrDefault(x => x.Id == createDomainRestrictionDTO.KeyId);
+
+            if (keyDB == null)
+                return NotFound();
+
+            
         }
 
     }

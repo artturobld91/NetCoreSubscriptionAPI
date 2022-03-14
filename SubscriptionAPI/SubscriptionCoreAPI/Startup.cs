@@ -37,7 +37,8 @@ namespace SubscriptionCoreAPI
             services.AddControllers(opciones =>
             {
                 opciones.Filters.Add(typeof(FiltroDeExcepcion));
-            }).AddJsonOptions(x =>
+            }).AddXmlDataContractSerializerFormatters()
+                .AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles).AddNewtonsoftJson();
 
             services.AddDbContext<ApplicationDbContext>(options =>
