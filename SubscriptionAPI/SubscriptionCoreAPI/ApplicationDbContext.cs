@@ -30,5 +30,7 @@ namespace SubscriptionCoreAPI
         public DbSet<AutorLibro> AutoresLibros { get; set; }
         public DbSet<APIKey> APIKeys { get; set; }
         public DbSet<Request> Requests { get; set; }
+        public DbSet<DomainRestriction> DomainRestrictions { get; set; }
+        public DbSet<IPRestriction> IPRestrictions { get; set; }
     }
 }

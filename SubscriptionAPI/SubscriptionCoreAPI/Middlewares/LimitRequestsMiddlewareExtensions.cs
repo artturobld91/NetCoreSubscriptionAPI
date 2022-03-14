@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using SubscriptionCoreAPI.DTOs;
 using SubscriptionCoreAPI.Entidades;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SubscriptionCoreAPI.Middlewares
@@ -31,6 +32,15 @@ namespace SubscriptionCoreAPI.Middlewares
         {
             var limitRequestsConfiguration = new LimitRequestsConfiguration();
             configuration.GetRequiredSection("RequestsLimit").Bind(limitRequestsConfiguration);
+
+            var route = httpContext.Request.Path.ToString();
+            var isRouteInWhiteList = limitRequestsConfiguration.WhiteListRoutes.Any(x => route.Contains(x));
+
+            if (isRouteInWhiteList)
+            { 
+                await next(httpContext);
+                return;
+            }
 
             var keyStringValues = httpContext.Request.Headers["X-Api-Key"];
 
@@ -79,12 +89,71 @@ namespace SubscriptionCoreAPI.Middlewares
                 }
             }
 
+            var restrictionsExceeded = RequestExccedsAnyRestriction(keyDB, httpContext);
+
+            if (!restrictionsExceeded)
+            {
+                httpContext.Response.StatusCode = 403;
+                return;
+            }
+
             var request = new Request() { KeyId = keyDB.Id, RequestDate = DateTime.UtcNow };
             context.Add(request);
             await context.SaveChangesAsync();
 
             await next(httpContext);
 
+        }
+
+        private bool RequestExccedsAnyRestriction(APIKey apikey, HttpContext httpContext)   
+        {
+            var restrictionsExists = apikey.DomainRestrictions.Any(); || apikey.IPRestrictions.Any();
+
+            if (!restrictionsExists)
+            {
+                return true;
+            }
+
+            var requestExceedsDomainRestrictions = RequestExccedsDomainRestrictions(apikey.DomainRestrictions, httpContext);
+
+            var requestExceedsIPRestrictions = RequestExccedsIPRestrictions(apikey.IPRestrictions, httpContext);
+
+            return requestExceedsDomainRestrictions || requestExceedsIPRestrictions;
+        }
+
+        private bool RequestExccedsIPRestrictions(List<IPRestriction> restrinctions, HttpContext httpContext)
+        {
+            if (restrinctions == null || restrinctions.Count == 0)
+                return false;
+
+            var ip = httpContext.Connection.RemoteIpAddress.ToString();
+
+            if (ip == String.Empty)
+            {
+                return false;
+            }
+
+            var exceedsRestriction = restrinctions.Any(x => x.IP == ip);
+            return exceedsRestriction;
+        }
+
+        private bool RequestExccedsDomainRestrictions(List<DomainRestriction> restrinctions, HttpContext httpContext)
+        {
+            if (restrinctions == null || restrinctions.Count == 0)
+                return false;
+
+            var referer = httpContext.Request.Headers["Referer"].ToString();
+
+            if (referer == String.Empty)
+            {
+                return false;
+            }
+
+            Uri myUri = new Uri(referer);
+            string host = myUri.Host;
+
+            var restrictionExceeded = restrinctions.Any(x => x.Domain == host);
+            return restrictionExceeded;
         }
     }
 }

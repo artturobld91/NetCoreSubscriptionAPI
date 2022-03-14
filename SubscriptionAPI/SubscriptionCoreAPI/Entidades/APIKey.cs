@@ -14,6 +14,8 @@ namespace SubscriptionCoreAPI.Entidades
         public bool Active { get; set; }
         public string UsuarioId { get; set; }
         public IdentityUser Usuario { get; set; }
+        public List<DomainRestriction> DomainRestrictions { get; set; }
+        public List<IPRestriction> IPRestrictions { get; set; }
     }
 
     public enum KeyType
